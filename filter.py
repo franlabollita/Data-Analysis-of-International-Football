@@ -40,23 +40,21 @@ def filterByResult(df, nation, resultType):
 
 def filterByTournament(df, tournament, date):
 
-    tM = df[df['tournament'].str.contains(tournament, case=False, na=False)]
+    tM = df[df['tournament'].str.contains(f'^{tournament}$', case=False, na=False)]
     tournamentMatches = tM[tM['date'].str.contains(date, case=False, na=False)]
 
     return tournamentMatches
 
-#def main():
 
-    #Open file path
-  #  resultsPathFile = 'mainArchive/results.csv'
-  #  df = pd.read_csv(resultsPathFile)
+def findAllTournamentYears(df, tournament):
 
-   # bermudaGames = filterByNation(df, 'Bermuda')
+    tDf = df[df['tournament'].str.contains(f'^{tournament}$')]
+    tDates = tDf['date'].tolist()
+    #Get years only
+    modified_list = [item[:4] for item in tDates]
 
-   # bermudaDraws = filterByResult(bermudaGames, 'Bermuda', wins)
-    #print(bermudaDraws)
+    tournamentDates = list(set(modified_list))
+    for year in tournamentDates:
+        year = int(year)
 
-    #worldCup86 = filterByTournament(df, 'FIFA World Cup', '1986')
-    #print(worldCup86)
-
-#main()
+    return sorted(tournamentDates)

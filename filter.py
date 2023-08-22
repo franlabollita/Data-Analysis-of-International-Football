@@ -11,15 +11,7 @@ def losses(a, b):
 
 
 def filterByNation(df, nation):
-
-    #find results of specified nation
-    homeGames = df[df['home_team'].str.contains(nation, case=False, na=False)]
-    awayGames = df[df['away_team'].str.contains(nation, case=False, na=False)]
-
-    #Append both df and sort
-    totalGames = pd.concat([homeGames, awayGames], ignore_index=True)
-    totalGames = totalGames.sort_values(by='date')
-
+    totalGames = df[df['home_team'].str.contains(nation, case=False, na=False) | df['away_team'].str.contains(nation, case=False, na=False)]
     return totalGames
 
 def filterByResult(df, nation, resultType):
@@ -45,11 +37,23 @@ def filterByTournament(df, tournament, date):
 
     return tournamentMatches
 
+def gamesPerYear(df, nation):
+    #return a dictionary year:games
+    return
+
+def goalsPerYear(df, nation):
+    #return a dictionary year:goals
+    return
+
+def goalsAgainstPerYear(df, nation):
+    #return a dictionary year:goalsAgainst
+    return
 
 def findAllTournamentYears(df, tournament):
 
     tDf = df[df['tournament'].str.contains(f'^{tournament}$')]
     tDates = tDf['date'].tolist()
+
     #Get years only
     modified_list = [item[:4] for item in tDates]
 
@@ -58,3 +62,29 @@ def findAllTournamentYears(df, tournament):
         year = int(year)
 
     return sorted(tournamentDates)
+
+def matchGoalscorers(df, nation, date):
+
+    mDf = df[df['home_team'].str.contains(f'^{nation}$') | df['away_team'].str.contains(f'^{nation}$')]
+    matchData = mDf[mDf['date'].str.contains(f'^{date}$')]
+
+    return matchData
+
+def NationGoalscorers(df, nation):
+    nationGoalsDf = df[df['home_team'].str.contains(f'^{nation}$') | df['away_team'].str.contains(f'^{nation}$')]
+    nationGoalsDf = nationGoalsDf[nationGoalsDf['team'].str.contains(f'^{nation}$')]
+    #dictionary con name:goals 
+    scorersDict = {}
+    # Iterate through the DataFrame rows
+    for index, row in nationGoalsDf.iterrows():
+        player = row['scorer']
+        if player in scorersDict:
+            scorersDict[player] += 1
+        else:
+            scorersDict[player] = 1
+
+    return scorersDict
+
+def playerGoals(df, player):
+    playerDF = df[df['scorer'].str.contains(f'^{player}$', na=False)]
+    return playerDF.shape[0]

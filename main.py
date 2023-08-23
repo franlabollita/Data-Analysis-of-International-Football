@@ -22,7 +22,8 @@ def main():
 
     #create Y values for graph
     yValues = [berWins.shape[0], berDraws.shape[0], berLosses.shape[0]]
-    #gf.barGraph(yValues, ['Wins', 'Draws', 'Losses'], 'Bermuda', ['Green', 'Gray', 'Red'])
+    gf.barGraph(yValues, ['Wins', 'Draws', 'Losses'], 'Bermuda All-Time Results', ['Green', 'Gray', 'Red'])
+    gf.pieChart(yValues, ['Wins', 'Draws', 'Losses'], 'Bermuda All-Time Results', ['Green', 'Gray', 'Red'])
 
     FWCYears = ft.findAllTournamentYears(df, 'FIFA World Cup')
     #print(FWCYears)
@@ -34,6 +35,6 @@ def main():
     #print(goalsMessi)
 
     argentinaGoalscorers = ft.NationGoalscorers(gsDf, 'Argentina')
-    print(argentinaGoalscorers)
+    #print(argentinaGoalscorers)
 
 main()

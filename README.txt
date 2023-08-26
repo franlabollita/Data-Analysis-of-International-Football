@@ -1,3 +1,4 @@
+require 'github/markup'
 Football Data Analytics Project
 
 

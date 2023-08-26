@@ -25,14 +25,18 @@ FILTER.PY
   - df (DataFrame): The DataFrame containing the international football results data.
   - nation (str): The name of the nation to filter the data by.
   Returns:
-  - totalGames (DataFrame): A filtered DataFrame containing all games involving the specified nation, regardless of whether they were the home or away team.
+  - totalGames (DataFrame): A filtered DataFrame containing all games involving the specified nation, regardless of 
+    whether they were the home or away team.
 
   filterByResult():
-  This function is designed to filter an input DataFrame to retrieve specific game results for a given nation based on the result type (e.g., wins, losses, draws). It processes both home and away games involving the specified nation and returns a DataFrame containing     the selected result type for that nation.
+  This function is designed to filter an input DataFrame to retrieve specific game results for a given nation based 
+  on the result type (e.g., wins, losses, draws). It processes both home and away games involving the specified 
+  nation and returns a DataFrame containing     the selected result type for that nation.
   Parameters:
   - df (DataFrame): The DataFrame containing the international football results data.
   - nation (str): The name of the nation to filter the data by.
-  resultType (function): A function that takes two arguments (home score and away score) and returns a boolean value representing whether the specified result type is achieved.
+  - resultType (function): A function that takes two arguments (home score and away score) and returns a boolean value 
+                           representing whether the specified result type is achieved.
   Returns:
   - totalResults (DataFrame): A filtered DataFrame containing game results of the specified type for the specified nation.
 

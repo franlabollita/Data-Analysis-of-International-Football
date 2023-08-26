@@ -1,9 +1,10 @@
 Football Data Analytics Project
 
 
-INTRODUCTION
-This is my first project diving into data analysis and getting to know some common libraries such as 
-pandas, numpy, and matplotlib. This project will mostly consist of managing dataframes and graphing data.
+**INTRODUCTION**
+Welcome to my first foray into data analysis. Throughout this project, I will delve into fundamental libraries 
+such as pandas, numpy, and matplotlib. The core focus will be on proficiently handling dataframes and employing 
+graphical representations to visualize the data effectively.
 
 DATA
 Special thanks to Mart Jurisoo (martj42) for uploading this free data on Kraggle. 

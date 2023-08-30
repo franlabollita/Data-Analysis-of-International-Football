@@ -11,6 +11,9 @@ def main():
     goalscorersPathFile = 'mainArchive/goalscorers.csv'
     gsDf = pd.read_csv(goalscorersPathFile)
 
+    shootoutPathFile = 'mainArchive\shootouts.csv'
+    soDf = pd.read_csv(shootoutPathFile)
+
     #Create Dataframe of Bermuda Games
     bermudaGames = ft.filterByNation(df, 'Bermuda')
     #print(bermudaGames)
@@ -22,8 +25,8 @@ def main():
 
     #create Y values for graph
     yValues = [berWins.shape[0], berDraws.shape[0], berLosses.shape[0]]
-    gf.barGraph(yValues, ['Wins', 'Draws', 'Losses'], 'Bermuda All-Time Results', ['Green', 'Gray', 'Red'])
-    gf.pieChart(yValues, ['Wins', 'Draws', 'Losses'], 'Bermuda All-Time Results', ['Green', 'Gray', 'Red'])
+    #gf.barGraph(yValues, ['Wins', 'Draws', 'Losses'], 'Bermuda All-Time Results', ['Green', 'Gray', 'Red'])
+    #gf.pieChart(yValues, ['Wins', 'Draws', 'Losses'], 'Bermuda All-Time Results', ['Green', 'Gray', 'Red'])
 
     FWCYears = ft.findAllTournamentYears(df, 'FIFA World Cup')
     #print(FWCYears)
@@ -34,7 +37,17 @@ def main():
     goalsMessi = ft.playerGoals(gsDf, 'Lionel Messi')
     #print(goalsMessi)
 
-    argentinaGoalscorers = ft.NationGoalscorers(gsDf, 'Argentina')
+    argentinaGoalscorers = ft.nationGoalscorers(gsDf, 'Argentina')
     #print(argentinaGoalscorers)
 
-main()
+    bermudaGamesPerYear = ft.gamesPerYear(df, 'Bermuda')
+    #print(bermudaGamesPerYear)
+
+    bermudaGoalsPerYear = ft.goalsPerYear(df, 'Bermuda')
+    print(bermudaGoalsPerYear)
+
+
+
+if __name__ == '__main__':
+    print("Welcome to the Interactive Football Data Analysis Tool!")
+    main()

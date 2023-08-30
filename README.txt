@@ -51,6 +51,17 @@ filterByTournament():
   Returns:
   - tournamentMatches (DataFrame): A DataFrame containing matches that belong to the specified tournament and date.
 
+gamesPerYear():
+    Count the number of games played by a nation in each year.
+    Parameters:
+    - df (pandas.DataFrame): The input DataFrame containing columns 'date', 'home_team', 'away_team', and 'winner'.
+    - nation (str): The nation for which to count games played.
+    Returns:
+    - nationGames: A dictionary where the keys are years and the values are the number of games played by the nation.
+
+goalsPerYear():
+    TO DO
+
 findAllTournamentYears():
   This function serves to identify all unique years in which a specified tournament took place within the given DataFrame. 
   It collects the years from the dataset corresponding to the particular tournament and returns a sorted list of these years.

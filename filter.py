@@ -39,11 +39,28 @@ def filterByTournament(df, tournament, date):
 
 def gamesPerYear(df, nation):
     #return a dictionary year:games
-    return
+    df['year'] = pd.to_datetime(df['date']).dt.year
+    nationGames = {}
+    
+    for year, group in df.groupby('year'):
+        total_games = (group['home_team'] == nation).sum() + (group['away_team'] == nation).sum()
+        nationGames[year] = total_games
+
+    return nationGames
 
 def goalsPerYear(df, nation):
     #return a dictionary year:goals
-    return
+    df['year'] = pd.to_datetime(df['date']).dt.year
+    nationGoals = {}
+    
+    for year, group in df.groupby('year'):
+        total_goals = (group[(group['home_team'] == nation)]
+                       ['home_score'].sum() +
+                       group[(group['away_team'] == nation)]
+                       ['away_score'].sum())
+        nationGoals[year] = total_goals
+
+    return nationGoals
 
 def goalsAgainstPerYear(df, nation):
     #return a dictionary year:goalsAgainst
@@ -70,7 +87,7 @@ def matchGoalscorers(df, nation, date):
 
     return matchData
 
-def NationGoalscorers(df, nation):
+def nationGoalscorers(df, nation):
     nationGoalsDf = df[df['home_team'].str.contains(f'^{nation}$') | df['away_team'].str.contains(f'^{nation}$')]
     nationGoalsDf = nationGoalsDf[nationGoalsDf['team'].str.contains(f'^{nation}$')]
     #dictionary con name:goals 
